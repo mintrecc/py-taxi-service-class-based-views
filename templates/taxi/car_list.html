@@ -3,12 +3,29 @@
 {% block content %}
 <h1>Car list:</h1>
   {% if car_list %}
-    <ul class="list-unstyled">
-      {% for car in car_list %}
-        <li><a href="{% url 'taxi:car-detail' pk=car.id %}">{{ car.model }}</a></li>
-      {% endfor %}
-    </ul>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in car_list %}
+          <tr>
+            <td>
+              <a href="{% url 'taxi:car-detail' pk=car.id %}">
+                {{ car.id }}
+              </a>
+            </td>
+            <td>
+              {{ car.model }}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% else %}
-    <h1>No cars exist.</h1>
+    <p>No cars exist.</p>
   {% endif %}
 {% endblock %}
